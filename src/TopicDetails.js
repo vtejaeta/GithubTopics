@@ -15,8 +15,6 @@ const TopicDetails = ({ activeTopicName, onTopicNameClick }) => {
     fetchPolicy: "no-cache"
   });
 
-  console.log({ data });
-
   if (error) {
     return (
       <FlexWrapper flexDirection="column" gap="16px">
@@ -74,7 +72,7 @@ const TopicDetails = ({ activeTopicName, onTopicNameClick }) => {
       flexDirection="column"
       gap="12px"
       width="100%"
-      style={{ padding: "0 20px" }}
+      style={{ padding: "0 20px 20px" }}
     >
       {data.topic.relatedTopics.map((each) => {
         return (

@@ -10,13 +10,11 @@ import { setContext } from "@apollo/client/link/context";
 import Header from "./Header";
 import FlexWrapper from "./Atoms/FlexWrapper";
 import TopicDetails from "./TopicDetails";
-import useScreenHeight from "./hooks/useScreenHeight";
 
 import "./styles.css";
 
 export default function App() {
-  const screenHeight = useScreenHeight();
-  const [activeTerm, setActiveTerm] = React.useState("react");
+  const [activeTerm, setActiveTerm] = React.useState("chrome");
 
   const httpLink = createHttpLink({
     uri: "https://api.github.com/graphql"
@@ -43,17 +41,21 @@ export default function App() {
 
   return (
     <ApolloProvider client={client}>
-      <FlexWrapper
-        flexDirection="column"
-        height={`${screenHeight}px`}
-        width="100%"
-      >
-        <Header heading={activeTerm} />
-        <FlexWrapper margin="16px 0 0" width="100%">
-          <TopicDetails
-            activeTopicName={activeTerm}
-            onTopicNameClick={callbackToSetActiveTerm}
-          />
+      <FlexWrapper height="100%">
+        <FlexWrapper
+          flexDirection="column"
+          height="100%"
+          width="100%"
+          justifyContent="normal"
+          style={{ padding: "20px 0" }}
+        >
+          <Header heading={activeTerm} />
+          <FlexWrapper margin="16px 0 0" width="100%">
+            <TopicDetails
+              activeTopicName={activeTerm}
+              onTopicNameClick={callbackToSetActiveTerm}
+            />
+          </FlexWrapper>
         </FlexWrapper>
       </FlexWrapper>
     </ApolloProvider>
